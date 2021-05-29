@@ -1,0 +1,20 @@
+apiVersion: v1
+data:
+  APPD_DIR: /appdynamics
+  APPD_ES_HOST: ""
+  APPD_ES_PORT: "9080"
+  APPD_ES_SSL: "false"
+  APPD_EVENT_ACCOUNT_NAME: ""
+  APPDYNAMICS_AGENT_ACCOUNT_ACCESS_KEY: 2ln03h4r8sy0
+  APPDYNAMICS_AGENT_ACCOUNT_NAME: jodynichols-trial
+  APPDYNAMICS_AGENT_APPLICATION_NAME: AD-Capital-K8S-grscarle-GCP
+  APPDYNAMICS_CONTROLLER_HOST_NAME: jodynichols-trial.saas.appdynamics.com
+  APPDYNAMICS_CONTROLLER_PORT: "443"
+  APPDYNAMICS_CONTROLLER_SSL_ENABLED: "True"
+  APPDYNAMICS_NETVIZ_AGENT_PORT: "3892"
+  RETRY: 10s
+  TIMEOUT: 300s
+kind: ConfigMap
+metadata:
+  creationTimestamp: null
+  name: env-map

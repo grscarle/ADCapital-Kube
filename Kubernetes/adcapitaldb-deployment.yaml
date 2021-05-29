@@ -1,0 +1,55 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: adcapitaldb
+  name: adcapitaldb
+spec:
+  selector:
+    matchLabels:
+      app: adcapitaldb
+  replicas: 1
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: adcapitaldb
+    spec:
+      containers:
+      - env:
+        - name: MYSQL_ROOT_PASSWORD
+          value: welcome1
+        image: mysql:5.7
+        args:
+          - "--ignore-db-dir=lost+found"
+        name: adcapitaldb
+        ports:
+        - containerPort: 3306
+        resources: {}
+        volumeMounts:
+        - name: mysql-persistent-storage
+          mountPath: /var/lib/mysql
+      volumes:
+      - name: mysql-persistent-storage
+        persistentVolumeClaim:
+          claimName: mysql-pvc-claim
+      restartPolicy: Always
+status: {}
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: adcapitaldb
+  name: adcapitaldb
+spec:
+  ports:
+  - name: "3306"
+    port: 3306
+    targetPort: 3306
+  selector:
+    app: adcapitaldb
+status:
+  loadBalancer: {}
